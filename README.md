@@ -1,4 +1,4 @@
-# STWM mensa menu
+# Mensa menu STWM
 
 Script for retrieving the menu in different mensas of the Studentenwerk München.
 
