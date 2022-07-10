@@ -10,3 +10,4 @@ Script for retrieving the menu in different mensas of the Studentenwerk München
 - [ ] Add support for more mensa locations
 - [ ] Simple translation of the menu from German to English (and maybe even more languages)
 - [ ] Add indicators for type of dish (vegan, vegetarian, fish, meat, ...)
+- [ ] Add ability to choose the mensa of choice via input arguments
