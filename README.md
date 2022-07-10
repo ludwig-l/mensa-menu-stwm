@@ -9,3 +9,4 @@ Script for retrieving the menu in different mensas of the Studentenwerk München
 - [ ] Check for public holidays too
 - [ ] Add support for more mensa locations
 - [ ] Simple translation of the menu from German to English (and maybe even more languages)
+- [ ] Add indicators for type of dish (vegan, vegetarian, fish, meat, ...)
