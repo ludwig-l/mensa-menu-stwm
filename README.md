@@ -2,13 +2,10 @@
 
 Script for retrieving the menu in different mensas of the Studentenwerk München.
 
-## Currently implemented
+## Currently implemented and ideas to implement in the future
 
-Retrieval of the mensa menu for a given date and mensa.
-
-## Ideas for future versions
-
-* Using current date as day to retrieve the menu
-* check for valid days (e.g. there is no menu on weekends or public holidays)
-* Add support for more mensa locations
-* Simple translation of the menu from German to English (and maybe even more languages)
+- [x] Retrieval of the mensa menu for the current day
+- [x] Check if today is a weekday and give hint if it is not
+- [ ] Check for public holidays too
+- [ ] Add support for more mensa locations
+- [ ] Simple translation of the menu from German to English (and maybe even more languages)
