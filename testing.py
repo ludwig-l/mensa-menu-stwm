@@ -26,11 +26,11 @@ dish_descriptions = soup.find_all(class_='js-schedule-dish-description')
 artnames = soup.find_all(class_='stwm-artname')
 
 # print out the mensa menu
-for i, dish_description in enumerate(dish_descriptions):
 print(f'Speiseplan {mensa_name} am {str(date_today)}:\n')
+for i, (dish_description, artname) in enumerate(zip(dish_descriptions, artnames)):
 
     # if artname is not there then just print an empty string instead
-    if len(artnames[i]) > 0:
-        print('{:<15} {:<1}'.format(artnames[i].contents[0], dish_description.contents[0]))
+    if len(artname) > 0:
+        print('{:<15} {:<1}'.format(artname.contents[0], dish_description.contents[0]))
     else:
         print('{:<15} {:<1}'.format('', dish_description.contents[0]))
