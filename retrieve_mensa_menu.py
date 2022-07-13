@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 from datetime import date
 import sys
 import argparse
+from googletrans import Translator
 
 
 parser = argparse.ArgumentParser()
@@ -38,12 +39,32 @@ soup = BeautifulSoup(html_page, 'html.parser')
 dish_descriptions = soup.find_all(class_='js-schedule-dish-description')
 artnames = soup.find_all(class_='stwm-artname')
 
+# create translator object
+translator = None
+if args.lang != 'de':
+    translator = Translator()
+
 # print out the mensa menu
-print(f'Speiseplan {args.mensa} am {str(date)}:\n')
+title_str = f'Speiseplan {args.mensa} am {str(date)}:' 
+# translate if specified language is other than German
+if args.lang != 'de':
+    print(translator.translate(title_str, src='de', dest=args.lang).text, '\n')
+else:
+    print(title_str, '\n')
 for i, (dish_description, artname) in enumerate(zip(dish_descriptions, artnames)):
 
     # if artname is not there then just print an empty string instead
+    # translate if specified language is other than German
     if len(artname) > 0:
-        print('{:<15} {:<1}'.format(artname.contents[0], dish_description.contents[0]))
+        if args.lang == 'de':
+            print('{:<15} {:<1}'.format(artname.contents[0], dish_description.contents[0]))
+        else:
+            artname_tl = translator.translate(artname.contents[0], src='de', dest=args.lang).text
+            dish_description_tl = translator.translate(dish_description.contents[0], src='de', dest=args.lang).text
+            print('{:<15} {:<1}'.format(artname_tl, dish_description_tl + ' (orig.: \"' + dish_description.contents[0] + '\b\")')) # backspace because there is a tailing whitespace at the end of each entry
     else:
-        print('{:<15} {:<1}'.format('', dish_description.contents[0]))
+        if args.lang == 'de':
+            print('{:<15} {:<1}'.format('', dish_description.contents[0]))
+        else:
+            dish_description_tl = translator.translate(dish_description.contents[0], src='de', dest=args.lang).text
+            print('{:<15} {:<1}'.format('', dish_description_tl + ' (orig.: \"' + dish_description.contents[0] + '\b\")')) # backspace because there is a tailing whitespace at the end of each entry
